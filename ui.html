@@ -1,0 +1,25 @@
+<style>
+  body{
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  }
+</style>
+<h3>Figma style cursor Creator</h3>
+<p>
+  <input id="name" placeholder="your name">
+  <input id="color" placeholder="your color" type="color">
+</p>
+<button id="create">Create</button>
+<button id="cancel">Cancel</button>
+<script>
+  const nameInput = document.getElementById('name')
+  const colorInput = document.getElementById('color')
+  const createButton = document.getElementById('create')
+  createButton.onclick = () => {
+    // 点击按钮时将填写的名字和颜色发送过去
+    parent.postMessage({ pluginMessage: { type: 'create-cursor', name: nameInput.value, color: colorInput.value } }, '*')
+  }
+  document.getElementById('cancel').onclick = () => {
+    // 点击取消按钮时关闭插件
+    parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+  }
+</script>
